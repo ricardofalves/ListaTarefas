@@ -1,0 +1,39 @@
+package br.ufjf.dcc192;
+
+public class Tarefa {
+    String titulo;
+    String descricao;
+    Boolean concluida;
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Boolean getConcluida() {
+        return concluida;
+    }
+
+    public void setConcluida(Boolean concluída) {
+        this.concluida = concluída;
+    }
+
+    public Tarefa(String titulo, String descricao) {
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.concluida = false;
+    }
+    
+    
+}

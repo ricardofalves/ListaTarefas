@@ -16,6 +16,7 @@
                     <th>Status</th>
                     <th>Título</th>
                     <th>Descrição</th>
+                    <th colspan="2">Opções</th>
                 </tr>    
                 <%
                     for (int i = 0; i < ListaDeTarefas.getInstance().size(); i++) {
@@ -24,7 +25,9 @@
                 <tr>
                     <td><a href="estado.html?linha=<%=i%>"><%=tarefa.getConcluida()?"Concluída":"A fazer"%></a></td>
                     <td><%=tarefa.getTitulo()%></td>
-                    <td><%=tarefa.getDescricao()%></td>
+                    <td><%=tarefa.getDescricao()%></td> 
+                    <td><a href="editar.html?linha=<%=i%>">Editar</a></td>
+                    <td><a href="excluir.html?linha=<%=i%>">Excluir</a></td>                    
                 </tr>
                 <%}%>
             </tbody>

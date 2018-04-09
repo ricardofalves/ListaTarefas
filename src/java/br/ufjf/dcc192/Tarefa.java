@@ -25,8 +25,8 @@ public class Tarefa {
         return concluida;
     }
 
-    public void setConcluida(Boolean concluída) {
-        this.concluida = concluída;
+    public void setConcluida(Boolean concluida) {
+        this.concluida = concluida;
     }
 
     public Tarefa(String titulo, String descricao) {

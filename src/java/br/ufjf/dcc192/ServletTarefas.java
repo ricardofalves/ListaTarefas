@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "ServletTarefas", urlPatterns = {"/listar.html", "/nova.html"})
+@WebServlet(name = "ServletTarefas", urlPatterns = {"/listar.html", "/nova.html", "/estado.html"})
 public class ServletTarefas extends HttpServlet {
 
     @Override
@@ -19,8 +19,9 @@ public class ServletTarefas extends HttpServlet {
             listarTarefas(request, response);
         } else if ("/nova.html".equals(request.getServletPath())) {
             criarTarefas(request, response);
+        } else if ("/estado.html".equals(request.getServletPath())) {
+            concluirTarefas(request, response);
         }
-        listarTarefas(request, response);
     }
 
     @Override
@@ -30,7 +31,7 @@ public class ServletTarefas extends HttpServlet {
         Tarefa novaTarefa = new Tarefa(titulo, descricao);
         ListaDeTarefas.getInstance().add(novaTarefa);
         response.sendRedirect("listar.html");
-    }   
+    }
 
     private void listarTarefas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Tarefa> tarefas = ListaDeTarefas.getInstance();
@@ -38,11 +39,17 @@ public class ServletTarefas extends HttpServlet {
         RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/tarefas-listar.jsp");
         despachante.forward(request, response);
     }
-    
+
     private void criarTarefas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Tarefa> tarefas = ListaDeTarefas.getInstance();
         request.setAttribute("tarefas", tarefas);
         RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/tarefas-nome.jsp");
         despachante.forward(request, response);
+    }
+    
+    private void concluirTarefas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int linha = Integer.parseInt(request.getParameter("linha"));
+        ListaDeTarefas.getInstance().get(linha).setConcluida(!ListaDeTarefas.getInstance().get(linha).getConcluida());
+        response.sendRedirect("listar.html");
     }
 }

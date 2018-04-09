@@ -18,11 +18,11 @@
                     <th>Descrição</th>
                 </tr>    
                 <%
-                    for (Tarefa tarefa : (List<Tarefa>) request.getAttribute("tarefas")) {
-
+                    for (int i = 0; i < ListaDeTarefas.getInstance().size(); i++) {
+                        Tarefa tarefa = ListaDeTarefas.getInstance().get(i);
                 %>  
                 <tr>
-                    <td><%=tarefa.getConcluida()%></td>
+                    <td><a href="estado.html?linha=<%=i%>"><%=tarefa.getConcluida()?"Concluída":"A fazer"%></a></td>
                     <td><%=tarefa.getTitulo()%></td>
                     <td><%=tarefa.getDescricao()%></td>
                 </tr>
